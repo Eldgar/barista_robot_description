@@ -1,0 +1,456 @@
+<?xml version="1.0" ?>
+<robot name="barista_robot">
+    <gazebo reference="front_caster_wheel">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="back_caster_wheel">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="cup_holder_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+  <!-- Base link -->
+  <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+  </gazebo>
+  <link name="base_link">
+    <inertial>
+      <mass value="10" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <!-- Moment of inertia for a solid cylinder -->
+      <inertia ixx="0.91145" 
+           iyy="0.91145"
+           izz="0.78125"
+           ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.178" length="0.155" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0.1 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.178" length="0.155" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Rods -->
+  <link name="rod_1_link">
+    <inertial>
+      <mass value="0.25" />
+      <origin xyz="0 0 0.1875" rpy="0 0 0" />
+      <!-- Moment of inertia for a solid cylinder -->
+      <inertia ixx="0.0091145" 
+           iyy="0.0091145"
+           izz="0.0078125"
+           ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.9 0.9 0.9 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.01" length="0.220" />
+      </geometry>
+    </collision>
+  </link>
+    <joint name="rod_1_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rod_1_link"/>
+        <origin xyz="0.06 0.1 0.1875" rpy="3.14159 0 0"/>
+        <joint_properties damping="1.0" friction="1.0" />
+    </joint>
+
+    <link name="rod_2_link">
+    <inertial>
+      <mass value="0.25" />
+      <origin xyz="0 0 0.1875" rpy="0 0 0" />
+      <!-- Moment of inertia for a solid cylinder -->
+      <inertia ixx="0.0091145" 
+           iyy="0.0091145"
+           izz="0.0078125"
+           ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.9 0.9 0.9 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+    </collision>
+  </link>
+    <joint name="rod_2_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rod_2_link"/>
+        <origin xyz="0.06 -0.1 0.1875" rpy="3.14159 0 0"/>
+        <joint_properties damping="1.0" friction="1.0" />
+    </joint>
+
+    <link name="rod_3_link">
+    <inertial>
+      <mass value="0.25" />
+      <origin xyz="0 0 0.1875" rpy="0 0 0" />
+      <!-- Moment of inertia for a solid cylinder -->
+      <inertia ixx="0.0091145" 
+           iyy="0.0091145"
+           izz="0.0078125"
+           ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.8 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+    </collision>
+  </link>
+    <joint name="rod_3_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rod_3_link"/>
+        <origin xyz="-0.06 0.1 0.1875" rpy="3.14159 0 0"/>
+        <joint_properties damping="1.0" friction="1.0" />
+    </joint>
+
+    <link name="rod_4_link">
+    <inertial>
+      <mass value="0.25" />
+      <origin xyz="0 0 0.1875" rpy="0 0 0" />
+      <!-- Moment of inertia for a solid cylinder -->
+      <inertia ixx="0.0091145" 
+           iyy="0.0091145"
+           izz="0.0078125"
+           ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.8 0.8 0. 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.220" />
+      </geometry>
+    </collision>
+  </link>
+    <joint name="rod_4_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rod_4_link"/>
+        <origin xyz="-0.06 -0.1 0.1875" rpy="3.14159 0 0"/>
+        <joint_properties damping="1.0" friction="1.0" />
+    </joint> 
+                                                                             
+
+  <link name="cup_holder_link">
+    <inertial>
+      <mass value="3" />
+      <origin xyz="0 0 0.35" rpy="0 0 0" />
+      <!-- Moment of inertia for a solid cylinder -->
+      <inertia ixx="0.091145" 
+           iyy="0.091145"
+           izz="0.078125"
+           ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.160" length="0.09" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0.1 0.8 0.6"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.16" length="0.090" />
+      </geometry>
+    </collision>
+  </link>
+      <joint name="base_link_to_cup_holder_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="cup_holder_link"/>
+        <origin xyz="0 0 0.3395" rpy="0 0 0"/>
+    </joint>
+  
+
+  <!-- Right wheel joint -->
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <origin xyz="0.0 -0.145 -0.0725" rpy="1.57 0 0"/>
+        <axis xyz="0 0 -1"/>
+        <dynamics friction="0.02" damping="0.005"/>
+    </joint>
+    <link name="right_wheel">
+        <inertial>
+            <mass value="0.5"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+            <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.1 0.1 0.1 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Left wheel joint -->
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin xyz="0.0 0.145 -0.0725" rpy="1.57 0 0"/>
+        <axis xyz="0 0 -1"/>
+        <dynamics friction="0.02" damping="0.005"/>
+    </joint>
+    <!-- Left wheel -->
+    <link name="left_wheel">
+        <inertial>
+            <mass value="0.5"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.1 0.1 0.8 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Back caster wheel joint -->
+    <joint name="back_caster_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="back_caster"/>
+        <origin xyz="-0.1 0.0 -0.0725" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/> 
+        <limit effort="0.0" velocity="0.0" lower="-3.1416" upper="3.1416"/>
+    </joint>
+
+    <!-- Back caster wheel -->
+    <link name="back_caster">
+        <inertial>
+            <mass value="0.2"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.0350"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.8 0.8 0.8 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.0350"/>
+            </geometry>
+        </collision>
+        <surface>
+            <friction>
+                <ode>
+                    <mu>0.0</mu>
+                    <mu2>0.0</mu2>
+                </ode>
+            </friction>
+        </surface>
+    </link>
+
+    <!-- Front caster wheel joint -->
+    <joint name="front_caster_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="front_caster"/>
+        <origin xyz="0.1 0.0 -0.0725" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="0.0" velocity="0.0" lower="-3.1416" upper="3.1416"/>
+    </joint>
+
+    <!-- Front caster wheel -->
+    <link name="front_caster">
+        <inertial>
+            <mass value="0.2"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.0350"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.8 0.8 0.8 1.0"/>
+            </material>
+        </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <sphere radius="0.0350"/>
+        </geometry>
+        <surface>
+        <friction>
+            <ode>
+                <mu>0.0</mu>
+                <mu2>0.0</mu2>
+            </ode>
+        </friction>
+    </surface>
+    </collision>
+    </link>
+
+    
+
+    <link name="laser_sensor_link">
+	    <inertial>
+		    <mass value="1e-5"/>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+		    <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+	    </inertial>
+	    <collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+		    <geometry>
+			    <box size="0.1 0.1 0.1"/>
+		    </geometry>
+	    </collision>
+	    <visual>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+		    <geometry>
+			    <mesh filename="package://barista_robot_description/meshes/hokuyo_utm_30lx.dae"/>
+		    </geometry>
+	    </visual>
+    </link>
+    
+    <joint name="laser_sensor_joint" type="fixed">
+    	<origin xyz="0.11 0.0 0.11" rpy="0 0 0"/>
+    	<parent link="base_link"/>
+    	<child link="laser_sensor_link"/>
+    </joint>
+    
+    
+    <gazebo reference="laser_sensor_link">
+  		<sensor name="lidar" type="ray">
+			<always_on>true</always_on>
+			<visualize>true</visualize>
+			<update_rate>20</update_rate>
+			<ray>
+				<scan>
+					<horizontal>
+					<samples>720</samples>
+					<resolution>1.000000</resolution>
+                            <min_angle>-1.5708</min_angle>
+                            <max_angle>1.5708</max_angle>
+					</horizontal>
+				</scan>
+				<range>
+					<min>0.120000</min>
+					<max>6.0</max>
+					<resolution>0.015000</resolution>
+				</range>
+				<noise>
+					<type>gaussian</type>
+					<mean>0.0</mean>
+					<stddev>0.01</stddev>
+				</noise>
+			</ray>
+			<plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+				<ros>
+					<remapping>~/out:=scan</remapping>
+				</ros>
+				<output_type>sensor_msgs/LaserScan</output_type>
+				<frame_name>laser_sensor_link</frame_name>
+			</plugin>
+			
+		</sensor>
+  	</gazebo>
+
+  <!-- Differential drive -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+
+      <!-- wheels -->
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+
+      <!-- kinematics -->
+      <wheel_separation>0.29</wheel_separation>
+      <wheel_diameter>0.0412</wheel_diameter>
+
+      <!-- limits -->
+      <max_wheel_torque>10.0</max_wheel_torque>
+      <max_wheel_acceleration>3.0</max_wheel_acceleration>
+
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+
+    </plugin>
+  </gazebo>
+
+
+
+
+</robot>
