@@ -9,13 +9,13 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     # Define paths
     pkg_share = FindPackageShare('barista_robot_description').find('barista_robot_description')
-    urdf_file = os.path.join(pkg_share, 'urdf', 'barista_robot_model.urdf')
+    xacro_file = os.path.join(pkg_share, 'xacro', 'barista_robot_model.urdf.xacro')
     rviz_config_file = os.path.join(pkg_share, 'rviz', 'barista.rviz')
+    
     gazebo_models_path = os.path.join(pkg_share, 'meshes')
-    install_dir = os.path.dirname(pkg_share)  # Define the install directory
+    install_dir = os.path.dirname(pkg_share)
     gazebo_model_path = os.path.join(pkg_share)
     set_gazebo_model_path = SetEnvironmentVariable('GAZEBO_MODEL_PATH', gazebo_model_path)
-
 
     # Set GAZEBO_MODEL_PATH and GAZEBO_PLUGIN_PATH
     if 'GAZEBO_MODEL_PATH' in os.environ:
@@ -42,9 +42,15 @@ def generate_launch_description():
         description='Include laser scanner'
     )
 
-    # Read URDF file
-    with open(urdf_file, 'r') as infp:
-        robot_description_content = infp.read()
+
+
+    robot_description_content = Command(
+        [FindExecutable(name='xacro'), ' ',
+         xacro_file, ' ',
+         ]
+    )
+
+
 
     # Robot State Publisher Node
     robot_state_publisher = Node(
@@ -96,4 +102,5 @@ def generate_launch_description():
         gazebo_launch,
         spawn_robot_node
     ])
+
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_robot">
+  <!-- Wheel macro -->
+  <xacro:macro name="wheel" params="name parent_link radius width xyz rpy">
+    <!-- Wheel link -->
+    <gazebo reference="${name}">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    <link name="${name}">
+      <inertial>
+        <mass value="0.5" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}" length="${width}" />
+        </geometry>
+        <material name="black">
+          <color rgba="0.1 0.1 0.1 1.0" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}" length="${width}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint for the wheel -->
+    <joint name="${name}_joint" type="continuous">
+      <parent link="${parent_link}" />
+      <child link="${name}" />
+      <origin xyz="${xyz}" rpy="${rpy}" />
+      <axis xyz="0 0 -1" />
+      <dynamics friction="0.02" damping="0.005" />
+    </joint>
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="cup_holder_tray" params="name material_name parent_link radius length xyz">
+        <gazebo reference="${name}">
+            <material>Gazebo/${material_name}</material>
+        </gazebo>
+        <link name="${name}">
+                <inertial>
+                    <mass value="3" />
+                    <origin xyz="0 0 0.35" rpy="0 0 0" />
+                        <inertia ixx="0.91145" 
+                            iyy="0.91145"
+                            izz="0.78125"
+                            ixy="0" ixz="0" iyz="0" />
+                </inertial>
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radius}" length="${length}" />
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0.1 0.8 0.6"/>
+            </material>
+            </visual>
+            <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.16" length="0.090" />
+            </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_joint" type="fixed">
+                <parent link="${parent_link}"/>
+                <child link="${name}"/>
+                <origin xyz="${xyz}" rpy="0 0 0"/>
+        </joint>
+    </xacro:macro>
+
+</robot>

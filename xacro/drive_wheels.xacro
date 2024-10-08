@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="drive_wheels">
+    <xacro:macro name="drive_wheels">
+        <!-- Define left and right wheels using the macro -->
+        <xacro:wheel name="left_wheel" parent_link="base_link" radius="0.0352" width="0.0206"
+                    xyz="0.0 0.145 -0.0725" rpy="1.57 0 0" />
+        <xacro:wheel name="right_wheel" parent_link="base_link" radius="0.0352" width="0.0206"
+                    xyz="0.0 -0.145 -0.0725" rpy="1.57 0 0" />
+
+        <!-- Differential drive -->
+        <gazebo>
+            <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+
+            <!-- wheels -->
+            <left_joint>left_wheel_joint</left_joint>
+            <right_joint>right_wheel_joint</right_joint>
+
+            <!-- kinematics -->
+            <wheel_separation>0.29</wheel_separation>
+            <wheel_diameter>0.074</wheel_diameter>
+
+            <!-- limits -->
+            <max_wheel_torque>10.0</max_wheel_torque>
+            <max_wheel_acceleration>3.0</max_wheel_acceleration>
+
+            <!-- output -->
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+
+            <odometry_frame>odom</odometry_frame>
+            <robot_base_frame>base_link</robot_base_frame>
+
+            </plugin>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

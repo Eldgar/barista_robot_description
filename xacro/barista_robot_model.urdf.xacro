@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_robot">
+    <xacro:include filename="$(find barista_robot_description)/xacro/wheel.xacro" />
+    <xacro:include filename="$(find barista_robot_description)/xacro/standoff_rods.xacro" />
+    <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro" />
+    <xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro" />
+    <xacro:include filename="$(find barista_robot_description)/xacro/base_link.xacro" />
+    <xacro:include filename="$(find barista_robot_description)/xacro/drive_wheels.xacro" />
+    <xacro:include filename="$(find barista_robot_description)/xacro/caster_wheels.xacro" />
+
+    <xacro:arg name="include_laser" default="true" />
+
+
+    <xacro:base_link 
+        name="base_link" 
+        material_name="Blue"
+        mass="15" 
+        radius="0.178" 
+        length="0.155" />
+
+    
+    <xacro:drive_wheels/>
+
+  
+     <!-- Standoff rods -->
+    <xacro:standoff_rod name="rod_1" parent_link="base_link" radius="0.01" length="0.220" 
+                    xyz="0.06 0.1 0.1875" rpy="3.14159 0 0" />
+    <xacro:standoff_rod name="rod_2" parent_link="base_link" radius="0.01" length="0.220" 
+                        xyz="0.06 -0.1 0.1875" rpy="3.14159 0 0" />
+    <xacro:standoff_rod name="rod_3" parent_link="base_link" radius="0.01" length="0.220" 
+                        xyz="-0.06 0.1 0.1875" rpy="3.14159 0 0" />
+    <xacro:standoff_rod name="rod_4" parent_link="base_link" radius="0.01" length="0.220" 
+                        xyz="-0.06 -0.1 0.1875" rpy="3.14159 0 0" />
+    
+    <!-- Cup Holder -->
+    <xacro:cup_holder_tray name="cup_holder_tray" material_name="Blue" parent_link="base_link" 
+                       radius="0.160" length="0.09" xyz="0 0 0.3395"/>                                                                 
+
+    <!-- Caster wheels -->
+    <xacro:caster_wheel
+        wheel_name="back_caster"
+        parent_link="base_link"
+        origin_xyz="-0.1 0.0 -0.0725"
+        origin_rpy="0 0 0"
+        radius="0.0352"
+    />
+    <xacro:caster_wheel
+        wheel_name="front_caster"
+        parent_link="base_link"
+        origin_xyz="0.1 0.0 -0.0725"
+        origin_rpy="0 0 0"
+        radius="0.0352"
+    />
+
+    <xacro:if value="$(arg include_laser)">
+        <xacro:laser_scanner 
+            sensor_link="laser_sensor_link" 
+            parent_link="base_link"
+            sensor_xyz="0.11 0.0 0.11"
+        />
+    </xacro:if>
+
+</robot>

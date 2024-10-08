@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    
+    <!-- Standoff macro with parameters for name, parent_link, radius, length, position, and orientation -->
+    <xacro:macro name="standoff_rod" params="name parent_link radius length xyz rpy">
+    <gazebo reference="${name}">
+    <material>
+        <ambient>0.8 0.8 0.8 1.0</ambient>
+        <diffuse>0.8 0.8 0.8 1.0</diffuse>
+    </material>
+    </gazebo>
+        <link name="${name}">
+            <inertial>
+                <mass value="0.5" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}" />
+                </geometry>
+                <material name="gray">
+                    <color rgba="0.8 0.8 0.8 1.0" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}" />
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- Joint to attach standoff rod to the parent link -->
+        <joint name="${name}_joint" type="fixed">
+            <parent link="${parent_link}" />
+            <child link="${name}" />
+            <origin xyz="${xyz}" rpy="${rpy}" />
+        </joint>
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Define base link macro -->
+  <xacro:macro name="base_link" params="name material_name mass radius length">
+    
+    <!-- Gazebo material for the base link -->
+    <gazebo reference="${name}">
+      <material>Gazebo/${material_name}</material>
+    </gazebo>
+    
+    <!-- Base link -->
+    <link name="${name}">
+      <inertial>
+        <mass value="${mass}" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.91145" iyy="0.91145" izz="0.78125" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}" length="${length}" />
+        </geometry>
+        <material name="${material_name}">
+          <color rgba="0 0.1 0.8 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}" length="${length}" />
+        </geometry>
+      </collision>
+    </link>
+
+  </xacro:macro>
+
+</robot>

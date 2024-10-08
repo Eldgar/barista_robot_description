@@ -14,6 +14,11 @@ install(
   DESTINATION share/${PROJECT_NAME}/urdf
 )
 
+install(
+  DIRECTORY xacro/
+  DESTINATION share/${PROJECT_NAME}/xacro
+)
+
 # Install launch files
 install(
   DIRECTORY launch/
